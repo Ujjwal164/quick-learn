@@ -6,7 +6,7 @@ import { Modal } from 'flowbite-react';
 import { CloseIcon, Loader } from '../components/UIElements';
 import { en } from '@src/constants/lang/en';
 import { TAssignModalMetadata } from '../types/contentRepository';
-
+import { Accordion } from "flowbite-react";
 interface Props {
   show: boolean;
   setShow: (value: boolean) => void;
@@ -61,10 +61,31 @@ const AssignDataModal: FC<Props> = ({
     onSubmit(formData?.selected ?? []);
   }
 
+ 
+  const [isClient, setIsClient] = useState(false); 
+  useEffect(() => {
+    
+    setIsClient(true);
+  }, []);
+  if (!isClient) {
+    return null; 
+  }
   return (
-    <Modal show={show} size="6xl">
-      <Modal.Body className="p-0">
-        <div className="flex items-start justify-between p-4 rounded-t">
+
+    
+    <>
+    <style>
+        {`
+        "client"
+          .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+          }
+          
+        `}
+      </style>
+    <Modal show={show} size={'7xl'}>
+      <Modal.Body className="p-0" >
+        <div className="flex items-start justify-between p-4 rounded-t ">
           <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-400">
             {heading}
           </h3>
@@ -77,7 +98,7 @@ const AssignDataModal: FC<Props> = ({
           </button>
         </div>
         <form onSubmit={handleSubmit(onFormSubmit)}>
-          <div className="px-4 md:px-6">
+          <div className="px-4 md:px-6 ">
             <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
               <ul
                 className="flex flex-wrap -mb-px text-sm font-medium text-center"
@@ -93,44 +114,50 @@ const AssignDataModal: FC<Props> = ({
                 </li>
               </ul>
             </div>
-            <div id="myTabContent">
+            <div id="myTabContent" className='overflow-y-auto h-[60vh] overflow-hidden scrollbar-hide  '>
               <div
-                className="grid grid-cols-2 gap-4 md:grid-cols-4"
+                className="grid grid-cols-2 gap-4 md:grid-cols-4  "
                 id="brand"
                 role="tabpanel"
                 aria-labelledby="brand-tab"
               >
+                
                 {data.map((ele) => {
                   return (
-                    <div key={ele.name} className="space-y-2">
-                      <h5 className="text-lg font-medium text-black dark:text-white capitalize">
-                        {ele.name}
-                      </h5>
-                      {ele.list.map((item) => {
-                        return (
-                          <div key={item.value} className="flex items-center">
-                            <input
-                              id={item.name}
-                              type="checkbox"
-                              value={item.value}
-                              className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500"
-                              {...register('selected')}
-                              onChange={() => setIsFormDirty(true)}
-                            />
-                            <label
-                              htmlFor={item.name}
-                              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 capitalize"
-                            >
-                              {item.name}
-                            </label>
-                          </div>
-                        );
-                      })}
-                      {ele.list.length === 0 && (
-                        <p className="font-medium text-gray-500">
-                          No data found
-                        </p>
-                      )}
+                    <div key={ele.name} className="h-16 overflow-visible ">
+                      <Accordion collapseAll>
+                        <Accordion.Panel >
+                          <Accordion.Title className="text-black ">
+                            {ele.name}
+                          </Accordion.Title>
+                          <Accordion.Content className=" rounded-lg py-6 bg-white sticky">
+                            {ele.list.length > 0 ? (
+                              ele.list.map((item) => (
+                                <div key={item.value} className="flex items-center mb-2 ">
+                                  <input
+                                    id={item.name}
+                                    type="checkbox"
+                                    value={item.value}
+                                    className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500"
+                                    {...register('selected')}
+                                    onChange={() => setIsFormDirty(true)}
+                                  />
+                                  <label
+                                    htmlFor={item.name}
+                                    className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300 capitalize"
+                                  >
+                                    {item.name}
+                                  </label>
+                                </div>
+                              ))
+                            ) : (
+                              <p className="font-medium text-gray-500">
+                                No data found
+                              </p>
+                            )}
+                          </Accordion.Content>
+                        </Accordion.Panel>
+                      </Accordion>
                     </div>
                   );
                 })}
@@ -172,8 +199,15 @@ const AssignDataModal: FC<Props> = ({
           </div>
         </form>
       </Modal.Body>
+    
     </Modal>
+    </>
   );
 };
 
 export default AssignDataModal;
+
+
+
+
+
