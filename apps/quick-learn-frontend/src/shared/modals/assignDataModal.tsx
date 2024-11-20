@@ -60,8 +60,6 @@ const AssignDataModal: FC<Props> = ({
   function onFormSubmit(formData: schemaType) {
     onSubmit(formData?.selected ?? []);
   }
-
- 
   const [isClient, setIsClient] = useState(false); 
   useEffect(() => {
     
@@ -71,18 +69,6 @@ const AssignDataModal: FC<Props> = ({
     return null; 
   }
   return (
-
-    
-    <>
-    <style>
-        {`
-        "client"
-          .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-          }
-          
-        `}
-      </style>
     <Modal show={show} size={'7xl'}>
       <Modal.Body className="p-0" >
         <div className="flex items-start justify-between p-4 rounded-t ">
@@ -114,9 +100,9 @@ const AssignDataModal: FC<Props> = ({
                 </li>
               </ul>
             </div>
-            <div id="myTabContent" className='overflow-y-auto h-[60vh] overflow-hidden scrollbar-hide  '>
+            <div id="myTabContent" className='overflow-y-auto h-[60vh] overflow-hidden'>
               <div
-                className="grid grid-cols-2 gap-4 md:grid-cols-4  "
+                className="grid grid-cols-2 gap-4 md:grid-cols-4 "
                 id="brand"
                 role="tabpanel"
                 aria-labelledby="brand-tab"
@@ -133,7 +119,7 @@ const AssignDataModal: FC<Props> = ({
                           <Accordion.Content className=" rounded-lg py-6 bg-white sticky">
                             {ele.list.length > 0 ? (
                               ele.list.map((item) => (
-                                <div key={item.value} className="flex items-center mb-2 ">
+                                <div key={item.value} className="flex items-center mb-2">
                                   <input
                                     id={item.name}
                                     type="checkbox"
@@ -199,15 +185,8 @@ const AssignDataModal: FC<Props> = ({
           </div>
         </form>
       </Modal.Body>
-    
     </Modal>
-    </>
   );
 };
 
 export default AssignDataModal;
-
-
-
-
-
