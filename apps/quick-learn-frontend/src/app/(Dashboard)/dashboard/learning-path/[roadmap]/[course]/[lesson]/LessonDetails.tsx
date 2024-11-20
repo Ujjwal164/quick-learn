@@ -55,7 +55,7 @@ const LessonDetails = () => {
   }, [router, lesson, course, roadmap]);
 
   if (!lessonDetails) return <FullPageLoader />;
-  return <ViewLesson lesson={lessonDetails} links={links} />;
+  return <ViewLesson lesson={lessonDetails} links={links} showCheckBox={true}/>;
 };
 
 export default LessonDetails;

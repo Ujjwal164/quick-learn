@@ -35,6 +35,7 @@ const ProgressCard = ({
         */}
         {/* Spacer to maintain height */}
         {/* <div className="h-[42px]" /> */}
+        
       </div>
     </Link>
   );

@@ -112,6 +112,7 @@ interface Props {
   isApproved?: boolean;
   setIsApproved?: (value: boolean) => void;
   isPending?: boolean;
+  showCheckBox?:boolean
 }
 
 const ViewLesson: FC<Props> = ({
@@ -119,6 +120,7 @@ const ViewLesson: FC<Props> = ({
   isApproved,
   setIsApproved,
   links,
+  showCheckBox,
   isPending = false,
 }) => {
   useNavbarManagement();
@@ -145,6 +147,17 @@ const ViewLesson: FC<Props> = ({
           setIsApproved={setIsApproved}
         />
       )}
+      {showCheckBox && (
+        <div className="flex items-center gap-2  justify-center mt-5 mb-8">
+          <input 
+            type="checkbox" 
+            className="w-5 h-5 rounded border-gray-600" 
+          />
+          <label className="text-lg text-gray-900">
+            Mark your lesson as completed
+          </label>
+        </div>
+       )}
 
       {isPending && <PendingAlert />}
     </div>
