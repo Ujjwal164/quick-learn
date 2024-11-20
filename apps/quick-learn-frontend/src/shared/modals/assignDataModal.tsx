@@ -69,13 +69,8 @@ const AssignDataModal: FC<Props> = ({
     return null; 
   }
   return (
-<<<<<<< Updated upstream
     <Modal show={show} size={'7xl'}>
       <Modal.Body className="p-0" >
-=======
-    <Modal show={show} size="5xl" className=''>
-      <Modal.Body className="p-0 ">
->>>>>>> Stashed changes
         <div className="flex items-start justify-between p-4 rounded-t ">
           <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-400">
             {heading}
@@ -89,11 +84,7 @@ const AssignDataModal: FC<Props> = ({
           </button>
         </div>
         <form onSubmit={handleSubmit(onFormSubmit)}>
-<<<<<<< Updated upstream
           <div className="px-4 md:px-6 ">
-=======
-          <div className="px-4 md:px-6 overflow-y-auto h-[23vh]">
->>>>>>> Stashed changes
             <div className="mb-4 border-b border-gray-200 dark:border-gray-700">
               <ul
                 className="flex flex-wrap -mb-px text-sm font-medium text-center"
