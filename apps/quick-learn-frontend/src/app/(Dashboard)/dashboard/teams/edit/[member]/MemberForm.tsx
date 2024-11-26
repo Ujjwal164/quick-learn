@@ -86,9 +86,13 @@ function MemberForm<T extends z.ZodTypeAny>({
         {isAddMember ? en.common.add : en.common.edit} {en.teams.teamMember}
       </h1>
       <p className="text-gray-600 text-sm">
+<<<<<<< HEAD
         {isAddMember
           ? en.teams.fillDetailsOfNew
           : en.teams.updateDetails}
+=======
+        {isAddMember ? en.teams.fillDetailsOfNew : en.teams.updateDetails}
+>>>>>>> 52402a195dab35fc699be347e2134cf09518f878
       </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mt-3 grid gap-4 sm:grid-cols-2 sm:gap-6">
