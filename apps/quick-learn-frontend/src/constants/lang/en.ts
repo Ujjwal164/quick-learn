@@ -21,11 +21,7 @@ export const en = {
     action: 'Action',
     select: 'Select',
     quickLearn: 'Quick Learn',
-<<<<<<< HEAD
     add:"Add New",
-=======
-    add: 'Add New',
->>>>>>> 52402a195dab35fc699be347e2134cf09518f878
 
     //dashboard
     loading: 'Loading...',
@@ -384,13 +380,8 @@ export const en = {
     results: 'results',
     previous: 'Previous',
     next: 'Next',
-<<<<<<< HEAD
     fillDetailsOfNew:'Please fill in details of new team member.',
     updateDetails:"Please update details to edit team member.",
-=======
-    fillDetailsOfNew: 'Please fill in details of new team member.',
-    updateDetails: 'Please update details to edit team member.',
->>>>>>> 52402a195dab35fc699be347e2134cf09518f878
     //Team table
     User: 'User',
     Role: 'Role',
