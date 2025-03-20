@@ -23,7 +23,7 @@ import { UserTypeIdEnum } from '@quick-learn/shared';
 
 // using the global prefix from main file (api) and putting versioning here as v1 /api/v1/roadmap-categories
 @ApiTags('Roadmap Category')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller({
   version: '1',
   path: 'roadmap-categories',
@@ -33,9 +33,8 @@ export class RoadmapCategoryController {
     private readonly roadmapCategoryService: RoadmapCategoryService,
   ) {}
 
-  @UseGuards(RolesGuard)
-  @Roles(UserTypeIdEnum.SUPERADMIN)
   @Post()
+  @Roles(UserTypeIdEnum.SUPERADMIN)
   @ApiOperation({ summary: 'Adding roadmap category' })
   async create(
     @Body() createRoadmapCategoryDto: CreateRoadmapCategoryDto,
@@ -69,9 +68,8 @@ export class RoadmapCategoryController {
     return this.roadmapCategoryService.get({ id: +id });
   }
 
-  @UseGuards(RolesGuard)
-  @Roles(UserTypeIdEnum.SUPERADMIN)
   @Patch(':id')
+  @Roles(UserTypeIdEnum.SUPERADMIN)
   @ApiOperation({ summary: 'Update the roadmap category.' })
   @ApiParam({ name: 'id', type: 'string' })
   async update(
@@ -85,9 +83,8 @@ export class RoadmapCategoryController {
     return new SuccessResponse(en.successUpdateRoadmap);
   }
 
-  @UseGuards(RolesGuard)
-  @Roles(UserTypeIdEnum.SUPERADMIN)
   @Delete(':id')
+  @Roles(UserTypeIdEnum.SUPERADMIN)
   @ApiOperation({ summary: 'Delete the roadmap category.' })
   async remove(@Param('id') id: string) {
     await this.roadmapCategoryService.deleteRoadmapCategory(+id);

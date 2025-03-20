@@ -21,7 +21,7 @@ import { UserTypeIdEnum } from '@quick-learn/shared';
 
 // using the global prefix from main file (api) and putting versioning here as v1 /api/v1/skills
 @ApiTags('Skills')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @Controller({
   version: '1',
   path: 'skills',
@@ -30,7 +30,6 @@ export class SkillsController {
   constructor(private readonly skillsService: SkillsService) {}
 
   @Post()
-  @UseGuards(RolesGuard)
   @Roles(UserTypeIdEnum.SUPERADMIN)
   @ApiOperation({ summary: 'adding skill name' })
   async create(
@@ -53,7 +52,6 @@ export class SkillsController {
   }
 
   @Patch(':id')
-  @UseGuards(RolesGuard)
   @Roles(UserTypeIdEnum.SUPERADMIN)
   @ApiParam({ name: 'id', type: 'string' })
   @ApiOperation({ summary: 'Edit skill by id' })
@@ -66,7 +64,6 @@ export class SkillsController {
   }
 
   @Delete(':id')
-  @UseGuards(RolesGuard)
   @Roles(UserTypeIdEnum.SUPERADMIN)
   @ApiParam({ name: 'id', type: 'string' })
   @ApiOperation({ summary: 'Delete skill by id' })

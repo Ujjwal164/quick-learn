@@ -25,9 +25,7 @@ import { en } from '@src/lang/en';
 import { AssignRoadmapsToUserDto } from './dto/assign-roadmap.dto';
 import { GetUserQueryDto } from './dto/get-user-query.dto';
 import { GetLessonByIdQueryDto } from './dto/get-lesson-by-id.dto';
-import { UserRoadmapParamDto } from './dto/user-roadmap-param.dto';
-import { UsercourseParamDto } from './dto/user-course-param.dto';
-import { UserLessonParamDto } from './dto/user-lesson-param.dto';
+import { UserCourseParamDto, UserLessonParamDto, UserRoadmapParamDto } from './dto/user-base-param.dto';
 import { UserParamDto } from './dto/user-param.dto';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '@src/common/decorators/roles.decorator';
@@ -126,7 +124,7 @@ export class UsersController {
   @ApiOperation({ summary: "Get current user's course by id" })
   async getCurrentUserCoursesById(
     @CurrentUser() user: UserEntity,
-    @Param() param: UsercourseParamDto,
+    @Param() param: UserCourseParamDto,
     @Query('roadmapId') roadmapId?: string,
   ): Promise<SuccessResponse> {
     const roadmaps = await this.usersService.getCourseDetails(
@@ -198,9 +196,9 @@ export class UsersController {
     return new SuccessResponse(en.successGotUser, user);
   }
 
+  @Post()
   @UseGuards(RolesGuard)
   @Roles(UserTypeIdEnum.SUPERADMIN, UserTypeIdEnum.ADMIN)
-  @Post()
   @ApiOperation({ summary: 'Create new user' })
   async create(
     @CurrentUser() loggedInUser: UserEntity,

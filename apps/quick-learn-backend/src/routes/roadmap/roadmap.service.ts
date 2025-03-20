@@ -220,11 +220,6 @@ export class RoadmapService extends PaginationService<RoadmapEntity> {
     return roadmap;
   }
 
-  async archiveRoadmap(id: number): Promise<void> {
-    await this.getRoadmapById(id);
-    await this.update({ id }, { archived: true });
-  }
-
   async getRoadmapDetailsWithCourseAndLessonsCount(
     roadmapId: number,
     courseId?: number,
